@@ -28,7 +28,6 @@ const useStyle = makeStyles(() => ({
 }));
 const Appbar = (props) => {
   const { data } = props;
-  console.log(`data`, data);
   const classes = useStyle();
   return (
     <Grid md={12} xs={12} sm={12} item>

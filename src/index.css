@@ -1,11 +1,19 @@
 body {
   margin: 0;
   font-family: 'Lato', sans-serif;
-font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   
 }
 
 code {
   font-family: 'Lato', sans-serif;
-font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background:transparent;
 }

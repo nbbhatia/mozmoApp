@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Appbar from "./components/Appbar";
+import Promos from "./components/Promos";
+import Categories from "./components/categories";
+import Recommend from "./components/recommend";
 const Home = () => {
   const [data, setdata] = useState();
+  console.log(`data`, data);
   useEffect(() => {
     fetch("https://dinenite.in/api/web/store/fetch", {
       crossDomain: true,
@@ -18,6 +22,9 @@ const Home = () => {
   return (
     <>
       <Appbar data={data?.payload?.data} />
+      <Promos promoData={data?.payload?.data?.sliders} />
+      <Categories categoryData={data?.payload?.data?.categories} />
+      <Recommend recommendData={data?.payload?.data?.recommended} />
     </>
   );
 };
