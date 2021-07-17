@@ -3,9 +3,10 @@ import Appbar from "./components/Appbar";
 import Promos from "./components/Promos";
 import Categories from "./components/categories";
 import Recommend from "./components/recommend";
+import Products from "./components/Products";
 const Home = () => {
   const [data, setdata] = useState();
-  console.log(`data`, data);
+  console.log(`data`, data?.payload?.data?.categories?.product_info);
   useEffect(() => {
     fetch("https://dinenite.in/api/web/store/fetch", {
       crossDomain: true,
@@ -25,6 +26,7 @@ const Home = () => {
       <Promos promoData={data?.payload?.data?.sliders} />
       <Categories categoryData={data?.payload?.data?.categories} />
       <Recommend recommendData={data?.payload?.data?.recommended} />
+      <Products productsData={data?.payload?.data?.categories} />
     </>
   );
 };
