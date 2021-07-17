@@ -4,6 +4,7 @@ import Promos from "./components/Promos";
 import Categories from "./components/categories";
 import Recommend from "./components/recommend";
 import Products from "./components/Products";
+import BottomAppBar from "./components/bottomAppbar";
 const Home = () => {
   const [data, setdata] = useState();
   console.log(`data`, data?.payload?.data?.categories?.product_info);
@@ -27,6 +28,7 @@ const Home = () => {
       <Categories categoryData={data?.payload?.data?.categories} />
       <Recommend recommendData={data?.payload?.data?.recommended} />
       <Products productsData={data?.payload?.data?.categories} />
+      <BottomAppBar />
     </>
   );
 };

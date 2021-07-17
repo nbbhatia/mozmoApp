@@ -1,6 +1,15 @@
 import React from "react";
 import { Grid, makeStyles, Typography } from "@material-ui/core";
-const useStyle = makeStyles(() => ({
+const useStyle = makeStyles((theme) => ({
+  root: {
+    marginTop: "64px",
+    paddingLeft: 32,
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      flexWrap: "nowrap",
+      overflow: "scroll",
+    },
+  },
   image: {
     height: 90,
     width: 90,
@@ -27,14 +36,7 @@ const Promos = (categoryData) => {
   let data = categoryData?.categoryData;
   const classes = useStyle();
   return (
-    <Grid
-      md={12}
-      xs={12}
-      sm={12}
-      item
-      container
-      style={{ paddingLeft: 32, marginTop: 64 }}
-    >
+    <Grid md={12} xs={12} sm={12} item container className={classes.root}>
       {data?.map((obj) => (
         <Grid style={{ position: "relative" }}>
           <img

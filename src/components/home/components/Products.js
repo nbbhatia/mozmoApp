@@ -68,26 +68,32 @@ const Promos = (productsData) => {
       sm={12}
       item
       container
-      style={{ paddingLeft: 32, marginTop: 64 }}
+      style={{ paddingLeft: 32, marginTop: 64, marginBottom: 100 }}
     >
       {data?.map((obj) => (
         <Grid md={12} xs={12} sm={12} item style={{ paddingTop: 16 }}>
           <Typography variant="body1">{obj.name}</Typography>
           {Array.isArray(obj.product_info) &&
             obj.product_info.map((item) => (
-              <Grid md={12} item style={{ paddingTop: 16 }}>
+              <Grid md={12} xs={12} item style={{ paddingTop: 16 }}>
                 <Grid
                   md={12}
+                  xs={12}
                   item
                   style={{ display: "flex", alignItems: "flex-end" }}
                 >
-                  <Grid md={2} item style={{ height: 70, marginRight: 16 }}>
+                  <Grid
+                    md={2}
+                    xs={3}
+                    item
+                    style={{ height: 70, marginRight: 16 }}
+                  >
                     <img
                       src={`https://dinenite.in/${item.image_url}`}
                       className={classes.image}
                     />
                   </Grid>
-                  <Grid md={12} item>
+                  <Grid md={12} xs={6} item>
                     <Typography variant="body2" className={classes.name}>
                       {item.name}
                     </Typography>
@@ -110,7 +116,7 @@ const Promos = (productsData) => {
                       Rs. {item.price}
                     </Typography>
                   </Grid>
-                  <Grid md={11} item container justify="flex-end">
+                  <Grid md={11} xs={3} item container justify="flex-end">
                     <Button className={classes.Button} onClick={notify}>
                       <AddIcon fontSize="small" />
                     </Button>
