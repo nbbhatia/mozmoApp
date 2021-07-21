@@ -82,7 +82,7 @@ const Promos = (recommendData) => {
               )}
             </Grid>
             <Typography variant="body1" className={classes.name}>
-              Rs.{obj.price}
+              ₹ {obj.price}
             </Typography>
           </Grid>
         ))}

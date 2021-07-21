@@ -1,10 +1,8 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { Toolbar, Grid, Button } from "@material-ui/core";
+import { Toolbar, Grid, Button, Badge } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
 import RestaurantMenuIcon from "@material-ui/icons/RestaurantMenu";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
@@ -42,7 +40,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BottomAppBar() {
   const classes = useStyles();
-
+  let cartData = JSON.parse(sessionStorage.getItem("cartData"));
+  const StyledBadge = withStyles((theme) => ({
+    badge: {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: "8px",
+    },
+  }))(Badge);
   return (
     <React.Fragment>
       <AppBar position="fixed" color="primary" className={classes.appBar}>
@@ -84,7 +90,9 @@ export default function BottomAppBar() {
                 aria-label="open drawer"
                 style={{ display: "block", textTransform: "none" }}
               >
-                <ShoppingCartIcon style={{ color: "#BC2C3D" }} />
+                <StyledBadge badgeContent={cartData.length} color="secondary">
+                  <ShoppingCartIcon style={{ color: "#BC2C3D" }} />
+                </StyledBadge>
                 <Typography variant="body2" className={classes.menuText}>
                   cart
                 </Typography>

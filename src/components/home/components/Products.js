@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import {
   Grid,
@@ -6,7 +6,9 @@ import {
   Typography,
   Divider,
   Button,
+  Badge,
 } from "@material-ui/core";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const useStyle = makeStyles(() => ({
@@ -59,7 +61,24 @@ const useStyle = makeStyles(() => ({
 const Promos = (productsData) => {
   let data = productsData?.productsData;
   const classes = useStyle();
-  const notify = () => toast.success("Item Added to Cart!");
+  const [cartData, setcartData] = useState([]);
+  const notify = (item) => {
+    toast.success("Item Added to Cart!");
+    var data = {
+      addon: item.addon_items,
+      count: 1,
+      extra: null,
+      itemId: item.id,
+      productName: item.name,
+      storeId: "6a5ac34e2a6273f0706ebde50dc3a0a123f68a5d",
+      _id: 1626851545646,
+    };
+    setcartData((prevCartData) => prevCartData.concat(data));
+  };
+
+  if (cartData.length > 1) {
+    sessionStorage.setItem("cartData", JSON.stringify(cartData));
+  }
 
   return (
     <Grid
@@ -113,11 +132,14 @@ const Promos = (productsData) => {
                       ""
                     )}
                     <Typography variant="body2" className={classes.price}>
-                      Rs. {item.price}
+                      ₹ {item.price}
                     </Typography>
                   </Grid>
                   <Grid md={11} xs={3} item container justify="flex-end">
-                    <Button className={classes.Button} onClick={notify}>
+                    <Button
+                      className={classes.Button}
+                      onClick={() => notify(item)}
+                    >
                       <AddIcon fontSize="small" />
                     </Button>
                   </Grid>
