@@ -70,6 +70,7 @@ const Promos = (productsData) => {
       extra: null,
       itemId: item.id,
       productName: item.name,
+      price:item.price,
       storeId: "6a5ac34e2a6273f0706ebde50dc3a0a123f68a5d",
       _id: 1626851545646,
     };

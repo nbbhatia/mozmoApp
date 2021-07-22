@@ -1,11 +1,11 @@
 import React from "react";
 
-function index() {
+function cartItem() {
   return (
     <div>
-      <h1>contact</h1>
+      <h1>hello</h1>
     </div>
   );
 }
 
-export default index;
+export default cartItem;

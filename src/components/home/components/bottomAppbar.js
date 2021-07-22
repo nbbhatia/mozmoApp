@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import { Toolbar, Grid, Button, Badge } from "@material-ui/core";
@@ -6,7 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import RestaurantMenuIcon from "@material-ui/icons/RestaurantMenu";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
-
+import { Link } from "react-router-dom";
+import CartModel from "../../cart/component/cartModal";
 const useStyles = makeStyles((theme) => ({
   text: {
     padding: theme.spacing(2, 2, 0),
@@ -41,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 export default function BottomAppBar() {
   const classes = useStyles();
   let cartData = JSON.parse(sessionStorage.getItem("cartData"));
+  const [open, setopen] = useState(false);
   const StyledBadge = withStyles((theme) => ({
     badge: {
       right: -3,
@@ -49,6 +51,12 @@ export default function BottomAppBar() {
       padding: "8px",
     },
   }))(Badge);
+  const handleCartModel = () => {
+    setopen(true);
+  };
+  const handleClose = () => {
+    setopen(false);
+  };
   return (
     <React.Fragment>
       <AppBar position="fixed" color="primary" className={classes.appBar}>
@@ -89,8 +97,9 @@ export default function BottomAppBar() {
                 color="inherit"
                 aria-label="open drawer"
                 style={{ display: "block", textTransform: "none" }}
+                onClick={() => handleCartModel()}
               >
-                <StyledBadge badgeContent={cartData.length} color="secondary">
+                <StyledBadge badgeContent={cartData?.length} color="secondary">
                   <ShoppingCartIcon style={{ color: "#BC2C3D" }} />
                 </StyledBadge>
                 <Typography variant="body2" className={classes.menuText}>
@@ -114,6 +123,7 @@ export default function BottomAppBar() {
           </Grid>
         </Toolbar>
       </AppBar>
+      <CartModel open={open} close={handleClose} />
     </React.Fragment>
   );
 }
