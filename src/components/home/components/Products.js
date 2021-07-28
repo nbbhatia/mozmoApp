@@ -7,6 +7,7 @@ import {
   Divider,
   Button,
   Badge,
+  TextField,
 } from "@material-ui/core";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -61,23 +62,32 @@ const useStyle = makeStyles(() => ({
 const Promos = (productsData) => {
   let data = productsData?.productsData;
   const classes = useStyle();
-  const [cartData, setcartData] = useState([]);
+  const [count, setcount] = useState(1);
+  const [id, setid] = useState();
+
+  let CartData = JSON.parse(sessionStorage.getItem("cartData")) || [];
+  const [cartData, setcartData] = useState(CartData);
+
   const notify = (item) => {
-    toast.success("Item Added to Cart!");
     var data = {
       addon: item.addon_items,
       count: 1,
       extra: null,
       itemId: item.id,
       productName: item.name,
-      price:item.price,
+      price: parseInt(item.price),
       storeId: "6a5ac34e2a6273f0706ebde50dc3a0a123f68a5d",
       _id: 1626851545646,
     };
+    setid(item.itemId);
+
+    toast.success("Item Added to Cart!");
+
+    setcount(data);
     setcartData((prevCartData) => prevCartData.concat(data));
   };
 
-  if (cartData.length > 1) {
+  if (cartData?.length > 0) {
     sessionStorage.setItem("cartData", JSON.stringify(cartData));
   }
 
@@ -143,6 +153,12 @@ const Promos = (productsData) => {
                     >
                       <AddIcon fontSize="small" />
                     </Button>
+                    {/* <TextField
+                      type="Number"
+                      onChange={(e) => handleChange(e, item)}
+                      inputProps={{ min: 0 }}
+                      style={{ marginRight: 24, width: 100 }}
+                    /> */}
                   </Grid>
                   <ToastContainer />
                 </Grid>

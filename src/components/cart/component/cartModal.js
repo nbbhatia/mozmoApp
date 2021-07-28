@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { makeStyles, Grid } from "@material-ui/core/";
+import React, { useState, useEffect } from "react";
+import { makeStyles, Grid, TextField } from "@material-ui/core/";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -38,17 +38,32 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function FullScreenDialog(props) {
   const classes = useStyles();
   const [count, setcount] = useState(1);
-  const [id, setid] = useState();
   let CartData = JSON.parse(sessionStorage.getItem("cartData"));
+  const [totalPrice, settotalPrice] = useState();
+  const [cartData] = useState(CartData);
 
-  const handleCartItemAdd = (item) => {
-    setcount(count + 1);
-    setid(item.itemId);
-  };
-  const handleCartItemRemove = () => {
-    setcount(count - 1);
-  };
+  let sum = 0;
+  let sum2 = 0;
+  useEffect(() => {
+    // console.log(CartData);
+    CartData?.map((item) => {
+      sum = sum + item.price;
+    });
+    // console.log(`sum`, sum);
+  }, []);
 
+  const handleCartItemAdd = (e, id, i) => {
+    if (CartData) {
+      setcount(CartData[i].count + 1);
+    }
+
+    if (CartData?.indexOf(id)) {
+      CartData[i].count = parseInt(CartData[i].count + 1);
+      sessionStorage.setItem("cartData", JSON.stringify(CartData));
+    }
+    settotalPrice(CartData[i].count * CartData[i].price);
+  };
+  console.log(`totalPrice`, totalPrice);
   return (
     <div>
       <Dialog
@@ -66,8 +81,8 @@ export default function FullScreenDialog(props) {
             </Typography>
           </Toolbar>
         </AppBar>
-        {CartData?.map((obj) => (
-          <List style={{ display: "flex", alignItems: "center" }}>
+        {CartData?.map((obj, i) => (
+          <List key={i} style={{ display: "flex", alignItems: "center" }}>
             <ListItem>
               <IconButton
                 style={{
@@ -78,7 +93,7 @@ export default function FullScreenDialog(props) {
                   margin: 16,
                 }}
                 disabled={count < 1 ? true : false}
-                onClick={() => handleCartItemRemove(obj)}
+                // onClick={() => handleCartItemRemove(obj)}
               >
                 <DeleteIcon fontSize="small" style={{ color: "#BC2C3D" }} />
               </IconButton>
@@ -111,16 +126,13 @@ export default function FullScreenDialog(props) {
                   margin: 16,
                 }}
                 disabled={count < 1 ? true : false}
-                onClick={() => handleCartItemRemove(obj.id)}
+                // onClick={() => handleCartItemRemove(i)}
               >
                 <RemoveIcon fontSize="small" style={{ color: "#BC2C3D" }} />
               </IconButton>
-              {console.log(`obj.id`, obj)}
-              {obj.itemId === id ? (
-                <Typography>{obj.count + count}</Typography>
-              ) : (
-                <Typography>{obj.count}</Typography>
-              )}
+
+              <Typography>{obj.count}</Typography>
+
               <IconButton
                 style={{
                   padding: 8,
@@ -129,11 +141,12 @@ export default function FullScreenDialog(props) {
                   width: 30,
                   margin: 16,
                 }}
-                onClick={() => handleCartItemAdd(obj)}
+                onClick={(e) => handleCartItemAdd(e, obj.itemId, i)}
               >
                 <AddIcon fontSize="small" style={{ color: "#BC2C3D" }} />
               </IconButton>
             </div>
+
             <ListItemText
               primary={`₹${obj.price} `}
               style={{
@@ -154,8 +167,7 @@ export default function FullScreenDialog(props) {
           item
           container
           justify="space-between"
-          style={{ padding: 32
-           }}
+          style={{ padding: 32 }}
         >
           <Typography>SubTotal</Typography>
           <Typography>{`₹${count} `}</Typography>
