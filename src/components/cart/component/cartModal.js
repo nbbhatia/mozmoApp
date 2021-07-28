@@ -45,7 +45,6 @@ export default function FullScreenDialog(props) {
   let sum = 0;
   let sum2 = 0;
   useEffect(() => {
-    // console.log(CartData);
     CartData?.map((item) => {
       sum = sum + item.price;
     });
