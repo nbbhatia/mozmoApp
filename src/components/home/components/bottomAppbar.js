@@ -113,8 +113,11 @@ export default function BottomAppBar() {
                 color="inherit"
                 aria-label="open drawer"
                 style={{ display: "block", textTransform: "none" }}
+                component={Link}
+                to="/my-order"
               >
                 <MenuBookIcon style={{ color: "#BC2C3D" }} />
+
                 <Typography variant="body2" className={classes.menuText}>
                   Order
                 </Typography>

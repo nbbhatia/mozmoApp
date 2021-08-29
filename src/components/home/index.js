@@ -7,7 +7,6 @@ import Products from "./components/Products";
 import BottomAppBar from "./components/bottomAppbar";
 const Home = () => {
   const [data, setdata] = useState();
-  console.log(`data`, data?.payload?.data?.categories?.product_info);
   useEffect(() => {
     fetch("https://dinenite.in/api/web/store/fetch", {
       crossDomain: true,
