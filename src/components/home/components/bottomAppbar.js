@@ -8,6 +8,8 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import { Link } from "react-router-dom";
 import CartModel from "../../cart/component/cartModal";
+
+
 const useStyles = makeStyles((theme) => ({
   text: {
     padding: theme.spacing(2, 2, 0),

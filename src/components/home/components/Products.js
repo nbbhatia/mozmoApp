@@ -12,6 +12,7 @@ import {
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AddOnModel from "../../addOn/component/addonModel";
 const useStyle = makeStyles(() => ({
   image: {
     height: "100%",
@@ -64,11 +65,14 @@ const Promos = (productsData) => {
   const classes = useStyle();
   const [count, setcount] = useState(1);
   const [id, setid] = useState();
+  const [open, setOpen] = React.useState(false);
 
   let CartData = JSON.parse(sessionStorage.getItem("cartData")) || [];
   const [cartData, setcartData] = useState(CartData);
+  const [currentItem,setCurrentItem]=useState();
 
   const notify = (item) => {
+    if(item.addon_items.length===0){
     var data = {
       addon: item.addon_items,
       count: 1,
@@ -85,11 +89,24 @@ const Promos = (productsData) => {
 
     setcount(data);
     setcartData((prevCartData) => prevCartData.concat(data));
+  }
+  else{
+    
+    setOpen(true);
+    setCurrentItem(item);
+
+
+  }
+
   };
 
   if (cartData?.length > 0) {
     sessionStorage.setItem("cartData", JSON.stringify(cartData));
   }
+  const handleClose = () => {
+    setOpen(false);
+    
+  };
 
   return (
     <Grid
@@ -167,6 +184,8 @@ const Promos = (productsData) => {
             ))}
         </Grid>
       ))}
+      
+      <AddOnModel open={open} close={handleClose} data={currentItem}/>
     </Grid>
   );
 };
