@@ -62,7 +62,7 @@ export default function FullScreenDialog(props) {
     }
     settotalPrice(CartData[i].count * CartData[i].price);
   };
-  console.log(`totalPrice`, totalPrice);
+
   return (
     <div>
       <Dialog

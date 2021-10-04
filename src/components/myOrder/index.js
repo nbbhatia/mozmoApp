@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Grid, TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-
+import {
+  Grid,
+  TextField,
+  AppBar,
+  Toolbar,
+  Button,
+  Typography,
+  makeStyles,
+} from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 const usestyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -28,24 +31,15 @@ const usestyles = makeStyles((theme) => ({
 }));
 const MyOrder = () => {
   const classes = usestyles();
+  const history = useHistory();
+
   const [phone, setPhone] = useState();
-  const [orderData, setorderData] = useState();
+
   const handleChange = (e) => {
     setPhone(e.target.value);
   };
   const handleSubmit = () => {
-    fetch("https://dinenite.in/api/web/store/account/orders", {
-      crossDomain: true,
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        customer_phone: phone,
-      }),
-    })
-      .then((resp) => resp.json())
-      .then((data) => setorderData(data));
+    history.push(`/order-detail?phoneNumber=${phone}`);
   };
 
   return (

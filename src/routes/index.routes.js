@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "../components/home";
 import CartPage from "../components/cart";
 import MyOrder from "../components/myOrder";
+import OrderDetail from "../components/myOrder/orderDetailPage";
 const MyApp = () => {
   return (
     <BrowserRouter>
@@ -15,6 +16,9 @@ const MyApp = () => {
         </Route>
         <Route exact path="/my-order">
           <MyOrder />
+        </Route>
+        <Route exact path="/order-detail">
+          <OrderDetail />
         </Route>
       </Switch>
     </BrowserRouter>
