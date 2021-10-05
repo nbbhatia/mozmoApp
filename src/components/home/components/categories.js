@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, makeStyles, Typography } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 const useStyle = makeStyles((theme) => ({
   root: {
     marginTop: "64px",
@@ -35,10 +36,18 @@ const useStyle = makeStyles((theme) => ({
 const Promos = (categoryData) => {
   let data = categoryData?.categoryData;
   const classes = useStyle();
+  const history = useHistory();
+  const handleClick = (catId) => {
+    history.push(`/category-detail?catId=${catId}`);
+  };
+  console.log("history", history.goBack);
   return (
     <Grid md={12} xs={12} sm={12} item container className={classes.root}>
       {data?.map((obj) => (
-        <Grid style={{ position: "relative" }}>
+        <Grid
+          style={{ position: "relative", cursor: "pointer" }}
+          onClick={() => handleClick(obj.id)}
+        >
           <img
             src={`https://dinenite.in/${obj.image_url}`}
             className={classes.image}
