@@ -40,7 +40,7 @@ const Promos = (categoryData) => {
   const handleClick = (catId) => {
     history.push(`/category-detail?catId=${catId}`);
   };
-  console.log("history", history.goBack);
+
   return (
     <Grid md={12} xs={12} sm={12} item container className={classes.root}>
       {data?.map((obj) => (
@@ -51,10 +51,14 @@ const Promos = (categoryData) => {
           <img
             src={`https://dinenite.in/${obj.image_url}`}
             className={classes.image}
+            alt="catImage"
           />
           <Typography variant="body1" className={classes.name}>
             {obj.name}
           </Typography>
+          <Grid md={12} xs={12} sm={12} item className={classes.productGrid}>
+            {/* <Product productsData={catByFilter} /> */}
+          </Grid>
         </Grid>
       ))}
     </Grid>

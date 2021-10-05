@@ -6,10 +6,8 @@ import {
   Typography,
   Divider,
   Button,
-  Badge,
-  TextField,
 } from "@material-ui/core";
-
+import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const useStyle = makeStyles(() => ({
@@ -59,12 +57,13 @@ const useStyle = makeStyles(() => ({
     marginRight: 24,
   },
 }));
-const Promos = (productsData) => {
-  let data = productsData?.productsData;
+const Promos = (props) => {
+  const { productsData, padding, marginBottom } = props;
+  let data = productsData;
   const classes = useStyle();
   const [count, setcount] = useState(1);
   const [id, setid] = useState();
-
+  const history = useHistory();
   let CartData = JSON.parse(sessionStorage.getItem("cartData")) || [];
   const [cartData, setcartData] = useState(CartData);
 
@@ -90,7 +89,9 @@ const Promos = (productsData) => {
   if (cartData?.length > 0) {
     sessionStorage.setItem("cartData", JSON.stringify(cartData));
   }
-
+  const handleClick = (id) => {
+    history.push(`/product-detail?productId=${id}`);
+  };
   return (
     <Grid
       md={12}
@@ -98,12 +99,17 @@ const Promos = (productsData) => {
       sm={12}
       item
       container
-      style={{ paddingLeft: 32, marginTop: 64, marginBottom: 100 }}
+      style={{
+        paddingLeft: padding,
+        marginTop: 64,
+        marginBottom: marginBottom,
+      }}
     >
       {data?.map((obj) => (
         <Grid md={12} xs={12} sm={12} item style={{ paddingTop: 16 }}>
           <Typography variant="body1">{obj.name}</Typography>
-          {Array.isArray(obj.product_info) &&
+          {obj.product_info ? (
+            Array.isArray(obj.product_info) &&
             obj.product_info.map((item) => (
               <Grid md={12} xs={12} item style={{ paddingTop: 16 }}>
                 <Grid
@@ -117,6 +123,7 @@ const Promos = (productsData) => {
                     xs={3}
                     item
                     style={{ height: 70, marginRight: 16 }}
+                    onClick={() => handleClick(item.id)}
                   >
                     <img
                       src={`https://dinenite.in/${item.image_url}`}
@@ -164,7 +171,69 @@ const Promos = (productsData) => {
                 </Grid>
                 <Divider className={classes.divider} />
               </Grid>
-            ))}
+            ))
+          ) : (
+            <Grid md={12} xs={12} item style={{ paddingTop: 16 }}>
+              <Grid
+                md={12}
+                xs={12}
+                item
+                style={{ display: "flex", alignItems: "flex-end" }}
+              >
+                <Grid
+                  md={2}
+                  xs={3}
+                  item
+                  style={{ height: 70, marginRight: 16 }}
+                  onClick={() => handleClick(obj.id)}
+                >
+                  <img
+                    src={`https://dinenite.in/${obj.image_url}`}
+                    className={classes.image}
+                  />
+                </Grid>
+                <Grid md={12} xs={6} item>
+                  <Typography variant="body2" className={classes.name}>
+                    {obj.name}
+                  </Typography>
+                  {obj?.is_recommended ? (
+                    <Typography variant="caption" className={classes.rec}>
+                      Rec
+                    </Typography>
+                  ) : (
+                    ""
+                  )}
+                  {Array.isArray(obj.addon_items) &&
+                  obj.addon_items.length > 0 ? (
+                    <Typography variant="caption" className={classes.custom}>
+                      CUSTOM
+                    </Typography>
+                  ) : (
+                    ""
+                  )}
+                  <Typography variant="body2" className={classes.price}>
+                    ₹ {obj.price}
+                  </Typography>
+                </Grid>
+                <Grid md={11} xs={3} item container justify="flex-end">
+                  <Button
+                    className={classes.Button}
+                    onClick={() => notify(obj)}
+                  >
+                    <AddIcon fontSize="small" />
+                  </Button>
+                  {/* <TextField
+                type="Number"
+                onChange={(e) => handleChange(e, item)}
+                inputProps={{ min: 0 }}
+                style={{ marginRight: 24, width: 100 }}
+              /> */}
+                </Grid>
+                <ToastContainer />
+              </Grid>
+              <Divider className={classes.divider} />
+            </Grid>
+          )}
         </Grid>
       ))}
     </Grid>

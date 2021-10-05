@@ -50,7 +50,7 @@ const CategoryDetail = () => {
         </Typography>
       </Grid>
       <Grid md={12} xs={12} sm={12} item className={classes.productGrid}>
-        <Product productsData={catByFilter} />
+        <Product productsData={catByFilter} padding={32} marginBottom={100} />
       </Grid>
       <BottomAppBar />
     </Grid>

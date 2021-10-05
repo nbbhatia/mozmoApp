@@ -26,7 +26,11 @@ const Home = () => {
       <Promos promoData={data?.payload?.data?.sliders} />
       <Categories categoryData={data?.payload?.data?.categories} />
       <Recommend recommendData={data?.payload?.data?.recommended} />
-      <Products productsData={data?.payload?.data?.categories} />
+      <Products
+        productsData={data?.payload?.data?.categories}
+        padding={32}
+        marginBottom={100}
+      />
       <BottomAppBar />
     </>
   );
