@@ -90,7 +90,7 @@ const OrderDetail = () => {
   }, []);
 
   let data = orderData?.payload?.data;
-  console.log(`data`, data);
+
   return (
     <>
       <Grid md={12} xs={12} sm={12} item container className={classes.root}>

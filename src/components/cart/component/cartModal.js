@@ -37,32 +37,73 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function FullScreenDialog(props) {
   const classes = useStyles();
-  const [count, setcount] = useState(1);
+  const [count, setCount] = useState(0);
   let CartData = JSON.parse(sessionStorage.getItem("cartData"));
-  const [totalPrice, settotalPrice] = useState();
-  const [cartData] = useState(CartData);
+  const [totalPrice, setTotalPrice] = useState();
 
   let sum = 0;
-  let sum2 = 0;
+
   useEffect(() => {
     CartData?.map((item) => {
-      sum = sum + item.price;
+      if (item.newPrice) {
+        sum = sum + item.newPrice;
+      } else {
+        sum = sum + item.price;
+      }
     });
-    // console.log(`sum`, sum);
+
+    setTotalPrice(sum);
   }, []);
 
   const handleCartItemAdd = (e, id, i) => {
     if (CartData) {
-      setcount(CartData[i].count + 1);
+      setCount(CartData[i].count + 1);
     }
-
+    let newPrice;
     if (CartData?.indexOf(id)) {
       CartData[i].count = parseInt(CartData[i].count + 1);
+      newPrice = parseInt(CartData[i].price * CartData[i].count + 1);
+      CartData[i].newPrice = newPrice;
       sessionStorage.setItem("cartData", JSON.stringify(CartData));
     }
-    settotalPrice(CartData[i].count * CartData[i].price);
+
+    CartData?.map((item) => {
+      if (item.newPrice) {
+        sum = sum + item.newPrice;
+      } else {
+        sum = sum + item.price;
+      }
+    });
+    setTotalPrice(sum);
+  };
+  const handleCartItemRemove = (e, id, i) => {
+    if (CartData) {
+      setCount(CartData[i].count - 1);
+    }
+    let newPrice;
+    if (CartData?.indexOf(id)) {
+      CartData[i].count = parseInt(CartData[i].count - 1);
+      newPrice = parseInt(CartData[i].price * CartData[i].count - 1);
+      CartData[i].newPrice = newPrice;
+      sessionStorage.setItem("cartData", JSON.stringify(CartData));
+    }
+    CartData?.map((item) => {
+      if (item.newPrice) {
+        sum = sum + item.newPrice;
+      } else {
+        sum = sum + item.price;
+      }
+    });
+    setTotalPrice(sum);
   };
 
+  const handleRemoveFromCart = (e, id, i) => {
+    if (CartData?.indexOf(id)) {
+      let val = CartData?.filter((obj) => obj.itemId !== id);
+      sessionStorage.setItem("cartData", JSON.stringify(val));
+    }
+    window.location.reload();
+  };
   return (
     <div>
       <Dialog
@@ -91,8 +132,7 @@ export default function FullScreenDialog(props) {
                   width: 30,
                   margin: 16,
                 }}
-                disabled={count < 1 ? true : false}
-                // onClick={() => handleCartItemRemove(obj)}
+                onClick={(e) => handleRemoveFromCart(e, obj.itemId, i)}
               >
                 <DeleteIcon fontSize="small" style={{ color: "#BC2C3D" }} />
               </IconButton>
@@ -124,8 +164,8 @@ export default function FullScreenDialog(props) {
                   width: 30,
                   margin: 16,
                 }}
-                disabled={count < 1 ? true : false}
-                // onClick={() => handleCartItemRemove(i)}
+                disabled={obj.count < 1 ? true : false}
+                onClick={(e) => handleCartItemRemove(e, obj.itemId, i)}
               >
                 <RemoveIcon fontSize="small" style={{ color: "#BC2C3D" }} />
               </IconButton>
@@ -147,7 +187,7 @@ export default function FullScreenDialog(props) {
             </div>
 
             <ListItemText
-              primary={`₹${obj.price} `}
+              primary={obj.newPrice ? `₹${obj.newPrice} ` : `₹${obj.price} `}
               style={{
                 fontFamily: "Lato, sans-serif",
                 fontWeight: 700,
@@ -159,17 +199,70 @@ export default function FullScreenDialog(props) {
             <Divider />
           </List>
         ))}
-        <Grid
-          md={12}
-          xs={12}
-          sm={12}
-          item
-          container
-          justify="space-between"
-          style={{ padding: 32 }}
-        >
-          <Typography>SubTotal</Typography>
-          <Typography>{`₹${count} `}</Typography>
+        <Grid md={12} xs={12} sm={12} item style={{ padding: "50px" }}>
+          <Grid
+            md={12}
+            xs={12}
+            sm={12}
+            item
+            style={{ padding: "16px 0px" }}
+            container
+            justify="space-between"
+          >
+            <Typography>SubTotal</Typography>
+            <Typography>{`₹${totalPrice} `}</Typography>
+          </Grid>
+          <Divider />
+          <Grid
+            md={12}
+            xs={12}
+            sm={12}
+            item
+            style={{ padding: "16px 0px" }}
+            container
+            justify="space-between"
+          >
+            <Typography>Apply Coupan</Typography>
+            <Typography>{`₹${0} `}</Typography>
+          </Grid>
+          <Divider />
+          <Grid
+            md={12}
+            xs={12}
+            sm={12}
+            item
+            style={{ padding: "16px 0px" }}
+            container
+            justify="space-between"
+          >
+            <Typography>Service Charge</Typography>
+            <Typography>{`₹${0} `}</Typography>
+          </Grid>
+          <Divider />
+          <Grid
+            md={12}
+            xs={12}
+            sm={12}
+            item
+            style={{ padding: "16px 0px" }}
+            container
+            justify="space-between"
+          >
+            <Typography>Tax(%)</Typography>
+            <Typography>{`₹${0} `}</Typography>
+          </Grid>
+          <Grid md={12} xs={12} sm={12} item container justify="flex-end">
+            <Button
+              variant="contained"
+              style={{
+                background: "#28a745",
+                color: "#fff",
+                textTransform: "none",
+              }}
+            >
+              <Typography>Confirm Order</Typography>
+            </Button>
+          </Grid>
         </Grid>
       </Dialog>
     </div>

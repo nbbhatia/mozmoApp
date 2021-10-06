@@ -67,14 +67,13 @@ const ProductDetail = () => {
       .then((resp) => resp.json())
       .then((data) => setdata(data));
   }, []);
-  console.log(`data`, data);
+
   let params = new URLSearchParams(window.location.search).get("productId");
   let productData = data?.payload?.data?.products;
   let recommendData = data?.payload?.data.recommended;
   let productByFilter = productData?.filter(
     (item) => item.id === parseInt(params)
   );
-  console.log(`productByFilter`, productByFilter);
 
   return (
     <Grid md={12} xs={12} sm={12} item className={classes.root}>
