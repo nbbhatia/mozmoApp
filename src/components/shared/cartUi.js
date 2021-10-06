@@ -192,7 +192,7 @@ export default function FullScreenDialog(props) {
                 }}
               />
             </List>
-            <Divider style={{ margin: "0px 32px" }} />
+            <Divider style={{ margin: "0px 32px 16px 32px" }} />
           </div>
         ))}
       </div>
