@@ -6,6 +6,7 @@ import MyOrder from "../components/myOrder";
 import OrderDetail from "../components/myOrder/orderDetailPage";
 import CategoryDetail from "../components/categoryDetail";
 import ProductDetail from "../components/productDetail";
+import CartDetail from "../components/cart/component/cart-detail";
 const MyApp = () => {
   return (
     <BrowserRouter>
@@ -27,6 +28,9 @@ const MyApp = () => {
         </Route>
         <Route exact path="/product-detail">
           <ProductDetail />
+        </Route>
+        <Route exact path="/cart-detail">
+          <CartDetail />
         </Route>
       </Switch>
     </BrowserRouter>

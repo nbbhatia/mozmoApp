@@ -52,7 +52,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 const ProductDetail = () => {
-  const [data, setdata] = useState();
+  const [data, setData] = useState();
   const classes = useStyle();
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const ProductDetail = () => {
       }),
     })
       .then((resp) => resp.json())
-      .then((data) => setdata(data));
+      .then((data) => setData(data));
   }, []);
 
   let params = new URLSearchParams(window.location.search).get("productId");
