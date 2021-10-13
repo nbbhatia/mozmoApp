@@ -31,7 +31,7 @@ const Home = () => {
         padding={32}
         marginBottom={100}
       />
-      <BottomAppBar />
+      <BottomAppBar isTotalCost={false} />
     </>
   );
 };

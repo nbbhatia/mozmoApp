@@ -109,7 +109,7 @@ export default function FullScreenDialog(props) {
     });
     setTotalPrice(sum);
   };
-  console.log(`data`, data);
+
   const handleRemoveFromCart = (e, id, i) => {
     if (CartData?.indexOf(id)) {
       let val = CartData?.filter((obj) => obj.itemId !== id);

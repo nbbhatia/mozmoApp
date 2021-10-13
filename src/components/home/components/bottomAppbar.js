@@ -39,7 +39,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BottomAppBar() {
+export default function BottomAppBar(props) {
+  const { isTotalCost, totalCost } = props;
   const classes = useStyles();
   let cartData = JSON.parse(sessionStorage.getItem("cartData"));
   const [open, setopen] = useState(false);
@@ -62,68 +63,75 @@ export default function BottomAppBar() {
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar
           style={{
-            background: "#fff",
+            background: totalCost ? "rgb(96, 178, 70)" : "#fff",
             borderRadius: 20,
             boxShadow: "0 0.5rem 1rem rgb(0 0 0 / 15%) !important",
           }}
         >
-          <Grid
-            md={12}
-            xs={12}
-            sm={12}
-            item
-            container
-            direction="row"
-            justify="center"
-            style={{ display: "contents" }}
-          >
-            <Grid md={4} item container justify="center">
-              <Button
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                style={{ display: "block", textTransform: "none" }}
-              >
-                <RestaurantMenuIcon style={{ color: "#BC2C3D" }} />
-                <Typography variant="body2" className={classes.menuText}>
-                  Menu
-                </Typography>
-              </Button>
-            </Grid>
+          {isTotalCost ? (
+            <Typography>TotalCost: {totalCost}</Typography>
+          ) : (
+            <Grid
+              md={12}
+              xs={12}
+              sm={12}
+              item
+              container
+              direction="row"
+              justify="center"
+              style={{ display: "contents" }}
+            >
+              <Grid md={4} item container justify="center">
+                <Button
+                  edge="start"
+                  color="inherit"
+                  aria-label="open drawer"
+                  style={{ display: "block", textTransform: "none" }}
+                >
+                  <RestaurantMenuIcon style={{ color: "#BC2C3D" }} />
+                  <Typography variant="body2" className={classes.menuText}>
+                    Menu
+                  </Typography>
+                </Button>
+              </Grid>
 
-            <Grid md={4} item container justify="center">
-              <Button
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                style={{ display: "block", textTransform: "none" }}
-                onClick={() => handleCartModel()}
-              >
-                <StyledBadge badgeContent={cartData?.length} color="secondary">
-                  <ShoppingCartIcon style={{ color: "#BC2C3D" }} />
-                </StyledBadge>
-                <Typography variant="body2" className={classes.menuText}>
-                  cart
-                </Typography>
-              </Button>
-            </Grid>
-            <Grid md={4} item container justify="center">
-              <Button
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                style={{ display: "block", textTransform: "none" }}
-                component={Link}
-                to="/my-order"
-              >
-                <MenuBookIcon style={{ color: "#BC2C3D" }} />
+              <Grid md={4} item container justify="center">
+                <Button
+                  edge="start"
+                  color="inherit"
+                  aria-label="open drawer"
+                  style={{ display: "block", textTransform: "none" }}
+                  onClick={() => handleCartModel()}
+                >
+                  <StyledBadge
+                    badgeContent={cartData?.length}
+                    color="secondary"
+                  >
+                    <ShoppingCartIcon style={{ color: "#BC2C3D" }} />
+                  </StyledBadge>
+                  <Typography variant="body2" className={classes.menuText}>
+                    cart
+                  </Typography>
+                </Button>
+              </Grid>
+              <Grid md={4} item container justify="center">
+                <Button
+                  edge="start"
+                  color="inherit"
+                  aria-label="open drawer"
+                  style={{ display: "block", textTransform: "none" }}
+                  component={Link}
+                  to="/my-order"
+                >
+                  <MenuBookIcon style={{ color: "#BC2C3D" }} />
 
-                <Typography variant="body2" className={classes.menuText}>
-                  Order
-                </Typography>
-              </Button>
+                  <Typography variant="body2" className={classes.menuText}>
+                    Order
+                  </Typography>
+                </Button>
+              </Grid>
             </Grid>
-          </Grid>
+          )}
         </Toolbar>
       </AppBar>
       <CartModel open={open} close={handleClose} />
