@@ -20,11 +20,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleAccordion(data) {
   const classes = useStyles();
-  console.log(`data`, data?.data);
+
   let cod = data?.data?.IsCodEnabled;
   let stripe = data?.data?.IsStripeEnabled;
   let rozarPay = data?.data?.IsRazorpayEnabled;
   let paypal = data?.data?.IsPaypalEnabled;
+
   const Accordion = withStyles({
     root: {
       "&:not(:last-child)": {

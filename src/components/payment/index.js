@@ -19,7 +19,7 @@ const Payment = () => {
   }, []);
 
   let paymentData = data?.payload?.data?.payment_gateways;
-  console.log(`paymentData`, paymentData);
+
   return (
     <>
       <BAckButton text="Payment Method" color="#000" />
