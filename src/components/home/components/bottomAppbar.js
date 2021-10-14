@@ -69,7 +69,11 @@ export default function BottomAppBar(props) {
           }}
         >
           {isTotalCost ? (
-            <Typography>TotalCost: {totalCost}</Typography>
+            <Grid container md={12} xs={12} sm={12} item justify="space-between">
+              <a href="/payment">
+                <Typography>TotalCost: {totalCost}</Typography>
+              </a>
+            </Grid>
           ) : (
             <Grid
               md={12}
@@ -82,17 +86,19 @@ export default function BottomAppBar(props) {
               style={{ display: "contents" }}
             >
               <Grid md={4} item container justify="center">
-                <Button
-                  edge="start"
-                  color="inherit"
-                  aria-label="open drawer"
-                  style={{ display: "block", textTransform: "none" }}
-                >
-                  <RestaurantMenuIcon style={{ color: "#BC2C3D" }} />
-                  <Typography variant="body2" className={classes.menuText}>
-                    Menu
-                  </Typography>
-                </Button>
+                <a href="/" style={{ textDecoration: "none" }}>
+                  <Button
+                    edge="start"
+                    color="inherit"
+                    aria-label="open drawer"
+                    style={{ display: "block", textTransform: "none" }}
+                  >
+                    <RestaurantMenuIcon style={{ color: "#BC2C3D" }} />
+                    <Typography variant="body2" className={classes.menuText}>
+                      Menu
+                    </Typography>
+                  </Button>
+                </a>
               </Grid>
 
               <Grid md={4} item container justify="center">

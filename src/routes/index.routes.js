@@ -7,6 +7,7 @@ import OrderDetail from "../components/myOrder/orderDetailPage";
 import CategoryDetail from "../components/categoryDetail";
 import ProductDetail from "../components/productDetail";
 import CartDetail from "../components/cart/component/cart-detail";
+import Payment from "../components/payment";
 const MyApp = () => {
   return (
     <BrowserRouter>
@@ -28,6 +29,9 @@ const MyApp = () => {
         </Route>
         <Route exact path="/product-detail">
           <ProductDetail />
+        </Route>
+        <Route exact path="/payment">
+          <Payment />
         </Route>
         <Route exact path="/cart-detail">
           <CartDetail />

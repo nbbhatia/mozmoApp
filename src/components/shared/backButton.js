@@ -13,10 +13,10 @@ const useStyle = makeStyles((theme) => ({
     padding: 32,
   },
 }));
-const BAckButton = () => {
+const BAckButton = (props) => {
   const history = useHistory();
   const classes = useStyle();
-
+  const { text, color } = props;
   return (
     <Grid
       onClick={() => history.goBack()}
@@ -26,9 +26,18 @@ const BAckButton = () => {
       alignItems="center"
     >
       <ArrowBackIosIcon
-        style={{ color: "#fff", fontSize: 20, cursor: "pointer" }}
+        style={{
+          color: color ? color : "#fff",
+          fontSize: 20,
+          cursor: "pointer",
+        }}
       />
-      <Typography className={classes.backButton}>back</Typography>
+      <Typography
+        className={classes.backButton}
+        style={{ color: color ? color : "#fff" }}
+      >
+        {text ? text : "back"}
+      </Typography>
     </Grid>
   );
 };
