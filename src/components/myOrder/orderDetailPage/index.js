@@ -50,7 +50,7 @@ const usestyles = makeStyles((theme) => ({
   order_unique_id: {
     color: "rgb(252, 128, 25)",
     fontSize: 16,
-    fontFamily: "Ubuntu, sans-serif",
+
     marginBottom: 8,
   },
 

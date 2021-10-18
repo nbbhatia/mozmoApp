@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuText: {
     color: "#BC2C3D",
-    fontFamily: "Lato, sans-serif",
+
     fontWeight: 700,
   },
 }));
@@ -69,7 +69,14 @@ export default function BottomAppBar(props) {
           }}
         >
           {isTotalCost ? (
-            <Grid container md={12} xs={12} sm={12} item justify="space-between">
+            <Grid
+              container
+              md={12}
+              xs={12}
+              sm={12}
+              item
+              justify="space-between"
+            >
               <a href="/payment">
                 <Typography>TotalCost: {totalCost}</Typography>
               </a>

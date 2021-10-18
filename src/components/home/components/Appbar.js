@@ -4,9 +4,9 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import PhoneIcon from "@material-ui/icons/Phone";
 const useStyle = makeStyles(() => ({
   font: {
-    fontFamily: "Lato, sans-serif",
-    fontFamily: "Roboto Condensed, sans-serif",
-    fontWeight: 700,
+    color: "#212529",
+    fontFamily: "Maven Pro",
+    fontWeight: 500,
   },
   logo: {
     height: 65,
@@ -16,8 +16,8 @@ const useStyle = makeStyles(() => ({
     padding: 32,
   },
   store_name: {
-    fontFamily: "Lato, sans-serif",
-    fontFamily: "Roboto Condensed, sans-serif",
+    color: "#212529",
+    fontFamily: "Maven Pro",
     paddingTop: 32,
     fontWeight: 700,
   },
@@ -43,7 +43,7 @@ const Appbar = (props) => {
           </Typography>
           <Grid container direction="row" alignItems="center">
             <LocationOnIcon style={{ color: "#dc3545" }} fontSize="small" />
-            <Typography variant="body1" className={classes.font}>
+            <Typography variant="body2" className={classes.font}>
               {data?.address}
             </Typography>
           </Grid>

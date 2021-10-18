@@ -28,7 +28,7 @@ const useStyle = makeStyles((theme) => ({
   specifications: {
     fontSize: 13,
     color: "#000",
-    fontFamily: "Ubuntu, sans-serif",
+
     margin: "16px 0px",
   },
   available: {
@@ -38,7 +38,6 @@ const useStyle = makeStyles((theme) => ({
     width: "max-content",
     padding: 8,
     borderRadius: ".25rem",
-    fontFamily: "Ubuntu, sans-serif",
   },
   recommend: {
     color: "#28a745",
@@ -48,7 +47,6 @@ const useStyle = makeStyles((theme) => ({
     fontSize: 13,
     borderRadius: ".25rem",
     margin: 5,
-    fontFamily: "Ubuntu, sans-serif",
   },
 }));
 const ProductDetail = () => {

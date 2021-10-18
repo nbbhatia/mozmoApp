@@ -19,8 +19,7 @@ const useStyle = makeStyles((theme) => ({
     objectFit: "cover",
   },
   name: {
-    fontFamily: "Lato, sans-serif",
-    fontFamily: "Roboto Condensed, sans-serif",
+    fontFamily: "Maven Pro",
     background: "rgba(0,0,0,0.8)",
     borderRadius: "3px",
     fontWeight: 500,

@@ -7,11 +7,12 @@ const useStyle = makeStyles(() => ({
     objectFit: "cover",
   },
   font: {
-    fontFamily: "Lato, sans-serif",
+    fontFamily: "Maven Pro",
     fontWeight: 700,
   },
   name: {
-    fontFamily: "Lato, sans-serif",
+    color: "#212529",
+    fontFamily: "Maven Pro",
     fontWeight: 500,
   },
   card: {
@@ -33,7 +34,7 @@ const useStyle = makeStyles(() => ({
     // width: 400,
   },
   custom: {
-    fontFamily: "Lato, sans-serif",
+    fontFamily: "Maven Pro",
     fontWeight: 500,
     fontSize: 10,
     alignItems: "center",

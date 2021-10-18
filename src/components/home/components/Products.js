@@ -18,13 +18,13 @@ const useStyle = makeStyles(() => ({
     objectFit: "cover",
   },
   name: {
-    fontFamily: "Lato, sans-serif",
     fontWeight: 700,
     alignItems: "center",
-    color: "#343a40 ",
+    color: "#212529",
+    fontFamily: "Maven Pro",
   },
   price: {
-    fontFamily: "Lato, sans-serif",
+    fontFamily: "Maven Pro",
     fontWeight: 700,
     alignItems: "center",
     color: "#343a40 ",
@@ -34,14 +34,20 @@ const useStyle = makeStyles(() => ({
     height: 1,
     marginTop: 16,
   },
+  productName: {
+    color: "#212529",
+    fontFamily: "Maven Pro",
+    fontWeight: 700,
+  },
   rec: {
+    fontFamily: "Maven Pro",
     backgroundColor: "rgb(33, 150, 243)",
     borderRadius: 4,
     color: "#fff",
     padding: 2,
+    marginTop: 8,
   },
   custom: {
-    fontFamily: "Lato, sans-serif",
     fontWeight: 700,
     fontSize: 10,
     alignItems: "center",
@@ -107,7 +113,9 @@ const Promos = (props) => {
     >
       {data?.map((obj) => (
         <Grid md={12} xs={12} sm={12} item style={{ paddingTop: 16 }}>
-          <Typography variant="body1">{obj.name}</Typography>
+          <Typography variant="body1" className={classes.productName}>
+            {obj.name}
+          </Typography>
           {obj.product_info ? (
             Array.isArray(obj.product_info) &&
             obj.product_info.map((item) => (

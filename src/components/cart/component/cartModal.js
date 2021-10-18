@@ -156,7 +156,6 @@ export default function FullScreenDialog(props) {
                   <ListItemText
                     primary={obj.productName}
                     style={{
-                      fontFamily: "Lato, sans-serif",
                       fontWeight: 700,
                       fontSize: 20,
                     }}
@@ -207,7 +206,6 @@ export default function FullScreenDialog(props) {
                     obj.newPrice ? `₹${obj.newPrice} ` : `₹${obj.price} `
                   }
                   style={{
-                    fontFamily: "Lato, sans-serif",
                     fontWeight: 700,
                     fontSize: 20,
                     marginRight: 100,
