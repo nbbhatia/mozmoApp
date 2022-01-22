@@ -6,13 +6,20 @@ const Promos = (promoData) => {
   let banners = promoData?.promoData;
 
   return (
-    <Grid md={12} xs={12} sm={12} item container>
+    <Grid
+      md={12}
+      xs={12}
+      sm={12}
+      item
+      container
+      style={{ backgroundColor: "#fafafa" }}
+    >
       <Typography
-        variant="body2"
+        variant="body1"
         style={{
           color: "#212529",
           fontFamily: "Maven Pro",
-          padding: 16,
+          padding: "16px 24px",
           fontWeight: 700,
         }}
       >
@@ -28,8 +35,12 @@ const Promos = (promoData) => {
         showStatus={false}
       >
         {banners?.map((obj) => (
-          <Grid md={12} xs={12} sm={12} item style={{ padding: "24px" }}>
-            <img src={`https://dinenite.in/${obj.photo_url}`} width="100%" />
+          <Grid md={12} xs={12} sm={12} item style={{ padding: "0px 8px" }}>
+            <img
+              src={`http://3.108.189.161/${obj.photo_url}`}
+              width="100%"
+              style={{ borderRadius: 8 }}
+            />
           </Grid>
         ))}
       </Carousel>

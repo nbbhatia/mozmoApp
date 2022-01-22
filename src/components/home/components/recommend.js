@@ -64,7 +64,7 @@ const Promos = (recommendData) => {
         {data?.map((obj) => (
           <Grid className={classes.card2}>
             <img
-              src={`https://dinenite.in/${obj.image_url}`}
+              src={`http://3.108.189.161/${obj.image_url}`}
               className={classes.image}
             />
             <Grid

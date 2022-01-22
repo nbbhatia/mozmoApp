@@ -6,7 +6,7 @@ import BottomAppBar from "../home/components/bottomAppbar";
 const Payment = () => {
   const [data, setdata] = useState();
   useEffect(() => {
-    fetch("https://dinenite.in/api/web/store/fetch", {
+    fetch("http://3.108.189.161/api/web/store/fetch", {
       crossDomain: true,
       method: "POST",
       headers: { "Content-Type": "application/json" },

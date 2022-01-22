@@ -48,7 +48,7 @@ const Promos = (categoryData) => {
           onClick={() => handleClick(obj.id)}
         >
           <img
-            src={`https://dinenite.in/${obj.image_url}`}
+            src={`http://3.108.189.161/${obj.image_url}`}
             className={classes.image}
             alt="catImage"
           />

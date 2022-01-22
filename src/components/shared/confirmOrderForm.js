@@ -17,7 +17,7 @@ const CartForm = () => {
   let CartData = JSON.parse(sessionStorage.getItem("cartData"));
   let sum = 0;
   useEffect(() => {
-    fetch("https://dinenite.in/api/web/store/fetch", {
+    fetch("http://3.108.189.161/api/web/store/fetch", {
       crossDomain: true,
       method: "POST",
       headers: { "Content-Type": "application/json" },

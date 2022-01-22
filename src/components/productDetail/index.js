@@ -54,7 +54,7 @@ const ProductDetail = () => {
   const classes = useStyle();
 
   useEffect(() => {
-    fetch("https://dinenite.in/api/web/store/fetch", {
+    fetch("http://3.108.189.161/api/web/store/fetch", {
       crossDomain: true,
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -91,7 +91,7 @@ const ProductDetail = () => {
               className={classes.bannerGrid}
             >
               <img
-                src={`https://dinenite.in/${obj.image_url}`}
+                src={`http://3.108.189.161/${obj.image_url}`}
                 alt="banner"
                 height="100%"
                 width="100%"

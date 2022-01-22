@@ -11,19 +11,24 @@ const useStyle = makeStyles(() => ({
   logo: {
     height: 65,
     width: 65,
-    borderRadius: "40px",
+    borderRadius: "25px",
     objectFit: "cover",
-    padding: 32,
+    padding: 16,
   },
   store_name: {
     color: "#212529",
     fontFamily: "Maven Pro",
-    paddingTop: 32,
+    paddingTop: 12,
     fontWeight: 700,
   },
   divider: {
-    height: 10,
-    marginTop: 30,
+    height: 4,
+    marginTop: 16,
+  },
+  phone_number: {
+    fontWeight: 700,
+    color: "#212529",
+    fontFamily: "Maven Pro",
   },
 }));
 const Appbar = (props) => {
@@ -33,17 +38,17 @@ const Appbar = (props) => {
     <Grid md={12} xs={12} sm={12} item>
       <Grid style={{ display: "flex" }}>
         <img
-          src={`https://dinenite.in/${data?.logo}`}
+          src={`http://3.108.189.161/${data?.logo}`}
           alt="logo"
           className={classes.logo}
         />
         <Grid container direction="column">
-          <Typography variant="h6" className={classes.store_name}>
+          <Typography variant="body1" className={classes.store_name}>
             {data?.store_name}
           </Typography>
           <Grid container direction="row" alignItems="center">
             <LocationOnIcon style={{ color: "#dc3545" }} fontSize="small" />
-            <Typography variant="body2" className={classes.font}>
+            <Typography variant="caption" className={classes.font}>
               {data?.address}
             </Typography>
           </Grid>
@@ -52,7 +57,7 @@ const Appbar = (props) => {
       <Grid container md={12} xs={12} sm={12} item>
         <Box pl={3} style={{ display: "flex" }}>
           <PhoneIcon style={{ color: "#dc3545" }} fontSize="small" />
-          <Typography variant="body1" className={classes.font}>
+          <Typography variant="caption" className={classes.phone_number}>
             {data?.store_phone}
           </Typography>
         </Box>
